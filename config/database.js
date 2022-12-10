@@ -1,0 +1,26 @@
+/******************************* */
+//configuration de la base donnée
+/****************************** */
+const mysql = require("mysql2");
+const db = mysql.createConnection({
+  port: process.env.DB_PORT,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  connectionLimit: 10,
+  connectTimeout: 10000,
+});
+
+
+/***************************** */
+//connection a la base de donnée
+/***************************** */
+db.connect((err) => {
+  if (err) {
+    throw err;
+  }
+  console.log("mysql connected");
+});
+
+module.exports = db;
